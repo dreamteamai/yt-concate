@@ -5,6 +5,7 @@ from yt_concate.pipeline.steps.download_captions import DownloadCaptions
 from yt_concate.pipeline.steps.read_caption import ReadCaption
 from yt_concate.pipeline.steps.search import Search
 from yt_concate.pipeline.steps.download_videos import DownloadVideos
+from yt_concate.pipeline.steps.edit_video import EditVideo
 from yt_concate.pipeline.steps.postflight import Postflight
 from yt_concate.pipeline.steps.step import StepException
 from yt_concate.pipeline.pipeline import Pipeline
@@ -16,7 +17,8 @@ CHANNEL_ID = 'UCKSVUHI9rbbkXhvAXK-2uxA'
 def main():
     inputs = {
         'channel_id': CHANNEL_ID,
-        'search_word':'incredible',
+        'search_word': 'incredible',
+        'limit': 10,
     }
 
     steps = [
@@ -27,6 +29,7 @@ def main():
         ReadCaption(),
         Search(),
         DownloadVideos(),
+        EditVideo(),
         Postflight(),
         ]
 
@@ -37,17 +40,5 @@ def main():
 
 if __name__ == '__main__':
     main()
-    # from pytube import YouTube
-    # url = 'https://www.youtube.com/watch?v=Ps7LONVD6jA&ab_channel=SupercarBlondie'
-    # print(url)
-    # source = YouTube(url)
-    # en_caption = source.captions.get_by_language_code('a.en')
-    # print(en_caption)
-    # en_caption_convert_to_srt = (en_caption.generate_srt_captions())
-    #
-    # print(en_caption_convert_to_srt)
-    # # save the caption to a file named Output.txt
-    # text_file = open("Output.txt", "w")
-    # text_file.write(en_caption_convert_to_srt)
-    # text_file.close()
+
 
